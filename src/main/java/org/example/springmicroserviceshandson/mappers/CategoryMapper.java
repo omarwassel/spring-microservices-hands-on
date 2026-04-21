@@ -1,0 +1,34 @@
+package org.example.springmicroserviceshandson.mappers;
+
+import org.example.springmicroserviceshandson.domain.PostStatus;
+import org.example.springmicroserviceshandson.domain.dtos.CategoryDto;
+import org.example.springmicroserviceshandson.domain.dtos.CreateCategoryRequest;
+import org.example.springmicroserviceshandson.domain.entities.Category;
+import org.example.springmicroserviceshandson.domain.entities.Post;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CategoryMapper {
+
+    public static CategoryDto toDto(Category category){
+        return CategoryDto
+                .builder()
+                .id(category.getId())
+                .name(category.getName())
+                .PostCount(calculatePostsCount(category.getPosts()))
+                .build();
+    }
+
+    private static Long calculatePostsCount(List<Post> posts){
+        if(null == posts){ return 0L;}
+        return posts.stream().filter(post -> post.getStatus().equals(PostStatus.PUBLISHED)).count();
+    }
+
+    public static Category toEntity(CreateCategoryRequest createCategoryRequest){
+        return Category
+                .builder()
+                .name(createCategoryRequest.getName())
+                .build();
+    }
+
+}
