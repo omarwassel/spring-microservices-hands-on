@@ -1,4 +1,4 @@
-package org.example.springmicroserviceshandson.domain.repositories;
+package org.example.springmicroserviceshandson.repositories;
 
 import org.example.springmicroserviceshandson.domain.entities.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
