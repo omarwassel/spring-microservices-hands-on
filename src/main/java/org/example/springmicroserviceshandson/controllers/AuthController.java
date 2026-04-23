@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/v1/auth")
+@RequestMapping(path = "/api/v1/auth/login")
 @RequiredArgsConstructor
 public class AuthController {
 
     private final AuthenticationService authenticationService;
 
     @PostMapping
-    public ResponseEntity<AuthResponse> createCategory(
+    public ResponseEntity<AuthResponse> login(
             @RequestBody LoginRequest loginRequest) {
-        UserDetails user = authenticationService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
+        UserDetails user = authenticationService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
         String token = authenticationService.generateToken(user);
         AuthResponse authResponse = AuthResponse
                 .builder()
