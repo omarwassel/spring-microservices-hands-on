@@ -1,6 +1,5 @@
 package org.example.springmicroserviceshandson.security;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.example.springmicroserviceshandson.domain.entities.User;
@@ -11,12 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 public class BlogUserDetails implements UserDetails {
 
-    private User user;
+    private final User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -53,5 +53,9 @@ public class BlogUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public UUID getId() {
+        return user.getId();
     }
 }

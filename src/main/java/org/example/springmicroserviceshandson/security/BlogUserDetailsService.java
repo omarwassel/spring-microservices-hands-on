@@ -1,18 +1,16 @@
 package org.example.springmicroserviceshandson.security;
 
+import lombok.RequiredArgsConstructor;
 import org.example.springmicroserviceshandson.domain.entities.User;
 import org.example.springmicroserviceshandson.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
+@RequiredArgsConstructor
 public class BlogUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername( String email) throws UsernameNotFoundException {
