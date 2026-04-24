@@ -5,10 +5,7 @@ import lombok.*;
 import org.example.springmicroserviceshandson.domain.PostStatus;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "posts")
@@ -54,7 +51,7 @@ public class Post {
             joinColumns = @JoinColumn( name = "post_id"),
             inverseJoinColumns = @JoinColumn( name = "tag_id")
     )
-    private HashSet<Tag> tags =  new HashSet<>();
+    private Set<Tag> tags =  new HashSet<>();
 
     @PrePersist
     private void onCreate() {

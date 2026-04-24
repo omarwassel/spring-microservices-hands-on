@@ -3,10 +3,7 @@ package org.example.springmicroserviceshandson.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "tags")
@@ -26,7 +23,7 @@ public class Tag {
 
 
     @ManyToMany( mappedBy = "tags")
-    private HashSet<Post> posts =  new HashSet<>();
+    private Set<Post> posts =  new HashSet<>();
 
 
     @Override

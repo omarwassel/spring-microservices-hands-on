@@ -52,7 +52,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private String extractUserName(String token){
         return Jwts
                 .parserBuilder()
-                .setSigningKey(secretKey)
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody().getSubject();
