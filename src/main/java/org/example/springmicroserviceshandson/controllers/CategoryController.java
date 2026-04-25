@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.springmicroserviceshandson.domain.dtos.categories.CategoryDto;
 import org.example.springmicroserviceshandson.domain.dtos.categories.CreateCategoryRequest;
+import org.example.springmicroserviceshandson.domain.dtos.categories.UpdateCategoryRequest;
 import org.example.springmicroserviceshandson.domain.entities.Category;
 import org.example.springmicroserviceshandson.mappers.CategoryMapper;
 import org.example.springmicroserviceshandson.services.CategoryService;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/api/v1/categories")
@@ -38,6 +40,20 @@ public class CategoryController {
                 CategoryMapper.toDto(savedCategory),
                 HttpStatus.CREATED
         );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDto> updateCategory(
+            @PathVariable UUID id,
+            @Valid @RequestBody UpdateCategoryRequest request) {
+        Category updatedCategory = categoryService.updateCategory(id, request);
+        return ResponseEntity.ok(CategoryMapper.toDto(updatedCategory));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable UUID id) {
+        categoryService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

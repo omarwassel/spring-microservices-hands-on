@@ -39,6 +39,16 @@ public class ErrorController {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = {IllegalStateException.class})
+    public ResponseEntity<ApiResponseError> handleIllegalStateException(IllegalStateException exception) {
+        ApiResponseError error = ApiResponseError
+                .builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .message(exception.getMessage())
+                .build();
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ApiResponseError> handleNotFound(EntityNotFoundException ex) {
         ApiResponseError error = ApiResponseError

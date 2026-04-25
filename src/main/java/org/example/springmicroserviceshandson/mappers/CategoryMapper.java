@@ -15,7 +15,7 @@ public class CategoryMapper {
                 .builder()
                 .id(category.getId())
                 .name(category.getName())
-                .postcount(calculatePostsCount(category.getPosts()))
+                .postCount(calculatePostsCount(category.getPosts()))
                 .build();
     }
 

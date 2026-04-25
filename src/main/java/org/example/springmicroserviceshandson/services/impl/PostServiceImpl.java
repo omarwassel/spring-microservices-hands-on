@@ -63,6 +63,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public Post createPost(CreatePostRequest request) {
         Category category = categoryService.findById(request.getCategoryId());
         List<Tag> tags = tagService.findAllById(request.getTagIds());
@@ -82,6 +83,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public Post updatePost(UUID id, UpdatePostRequest request) {
         Post post = getPostById(id);
         Category category = categoryService.findById(request.getCategoryId());
@@ -95,6 +97,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public void deletePost(UUID id) {
         if (!postRepository.existsById(id)) {
             throw new EntityNotFoundException("Cannot delete: Post not found");
