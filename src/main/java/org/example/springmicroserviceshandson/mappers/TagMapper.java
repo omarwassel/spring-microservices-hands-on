@@ -1,7 +1,7 @@
 package org.example.springmicroserviceshandson.mappers;
 
 import org.example.springmicroserviceshandson.domain.PostStatus;
-import org.example.springmicroserviceshandson.domain.dtos.TagDto;
+import org.example.springmicroserviceshandson.domain.dtos.tags.TagDto;
 import org.example.springmicroserviceshandson.domain.entities.Post;
 import org.example.springmicroserviceshandson.domain.entities.Tag;
 

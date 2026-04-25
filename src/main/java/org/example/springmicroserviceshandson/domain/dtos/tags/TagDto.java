@@ -1,5 +1,4 @@
-package org.example.springmicroserviceshandson.domain.dtos;
-
+package org.example.springmicroserviceshandson.domain.dtos.tags;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +8,12 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class CategoryDto {
+@NoArgsConstructor
+@Builder
+public class TagDto {
 
     private UUID id;
     private String name;
-    private Long postcount;
-
+    private Long postCount;
 }

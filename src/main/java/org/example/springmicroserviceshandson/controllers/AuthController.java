@@ -1,8 +1,8 @@
 package org.example.springmicroserviceshandson.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.example.springmicroserviceshandson.domain.dtos.AuthResponse;
-import org.example.springmicroserviceshandson.domain.dtos.LoginRequest;
+import org.example.springmicroserviceshandson.domain.dtos.auth.AuthResponse;
+import org.example.springmicroserviceshandson.domain.dtos.auth.LoginRequest;
 import org.example.springmicroserviceshandson.services.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;

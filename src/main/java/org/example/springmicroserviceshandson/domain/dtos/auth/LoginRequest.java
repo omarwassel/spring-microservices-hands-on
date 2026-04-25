@@ -1,4 +1,4 @@
-package org.example.springmicroserviceshandson.domain.dtos;
+package org.example.springmicroserviceshandson.domain.dtos.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -2,8 +2,8 @@ package org.example.springmicroserviceshandson.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.springmicroserviceshandson.domain.dtos.CategoryDto;
-import org.example.springmicroserviceshandson.domain.dtos.CreateCategoryRequest;
+import org.example.springmicroserviceshandson.domain.dtos.categories.CategoryDto;
+import org.example.springmicroserviceshandson.domain.dtos.categories.CreateCategoryRequest;
 import org.example.springmicroserviceshandson.domain.entities.Category;
 import org.example.springmicroserviceshandson.mappers.CategoryMapper;
 import org.example.springmicroserviceshandson.services.CategoryService;

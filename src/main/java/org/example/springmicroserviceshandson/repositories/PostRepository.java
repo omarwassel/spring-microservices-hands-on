@@ -1,5 +1,6 @@
 package org.example.springmicroserviceshandson.repositories;
 
+import org.example.springmicroserviceshandson.domain.PostStatus;
 import org.example.springmicroserviceshandson.domain.entities.Post;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,11 +13,14 @@ import java.util.UUID;
 public interface PostRepository extends JpaRepository<Post, UUID> {
 
     @EntityGraph(attributePaths = {"category", "tags"})
-    List<Post> findByCategoryIdAndTagsId(UUID categoryId, UUID tagId);
+    List<Post> findByCategoryIdAndTagsIdAndStatus(UUID categoryId, UUID tagId, PostStatus status);
 
     @EntityGraph(attributePaths = {"category", "tags"})
-    List<Post> findByCategoryId(UUID categoryId);
+    List<Post> findByCategoryIdAndStatus(UUID categoryId, PostStatus status);
 
     @EntityGraph(attributePaths = {"category", "tags"})
-    List<Post> findByTagsId(UUID tagId);
+    List<Post> findByTagsIdAndStatus(UUID tagId, PostStatus status);
+
+    @EntityGraph(attributePaths = {"category", "tags"})
+    List<Post> findByStatus(PostStatus postStatus);
 }

@@ -1,4 +1,4 @@
-package org.example.springmicroserviceshandson.domain.dtos.Post;
+package org.example.springmicroserviceshandson.domain.dtos.posts;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

@@ -2,9 +2,11 @@ package org.example.springmicroserviceshandson.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.springmicroserviceshandson.domain.dtos.Post.CreatePostRequest;
-import org.example.springmicroserviceshandson.domain.dtos.Post.PostDto;
-import org.example.springmicroserviceshandson.domain.dtos.Post.UpdatePostRequest;
+import org.example.springmicroserviceshandson.domain.dtos.posts.CreatePostRequest;
+import org.example.springmicroserviceshandson.domain.dtos.posts.PostDto;
+import org.example.springmicroserviceshandson.domain.dtos.posts.UpdatePostRequest;
+import org.example.springmicroserviceshandson.domain.entities.Post;
+import org.example.springmicroserviceshandson.mappers.PostMapper;
 import org.example.springmicroserviceshandson.services.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,33 +26,46 @@ public class PostController {
     public ResponseEntity<List<PostDto>> getPosts(
             @RequestParam(required = false) UUID categoryId,
             @RequestParam(required = false) UUID tagId) {
-        List<PostDto> posts = postService.getPosts(categoryId, tagId);
-        return ResponseEntity.ok(posts);
+        List<Post> posts = postService.getPosts(categoryId, tagId);
+        List<PostDto> dtoList = posts.stream().map(PostMapper::toDto).toList();
+        return ResponseEntity.ok(dtoList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PostDto> getPost(@PathVariable UUID id) {
-         PostDto post = postService.getPostById(id);
-        return ResponseEntity.ok(post);
+    public ResponseEntity<PostDto> getPost(
+            @PathVariable UUID id) {
+        Post post = postService.getPostById(id);
+        return ResponseEntity.ok(PostMapper.toDto(post));
+    }
+
+    @GetMapping("/drafts")
+    public ResponseEntity<List<PostDto>> getDraftPosts() {
+        List<Post> posts = postService.getDraftPosts();
+        List<PostDto> dtoList = posts.stream().map(PostMapper::toDto).toList();
+        return ResponseEntity.ok(dtoList);
     }
 
     @PostMapping
-    public ResponseEntity<PostDto> createPost(@Valid @RequestBody CreatePostRequest request) {
-         PostDto created = postService.createPost(request);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<PostDto> createPost(
+            @Valid @RequestBody CreatePostRequest request) {
+        Post post = postService.createPost(request);
+        return new ResponseEntity<>(
+                PostMapper.toDto(post),
+                HttpStatus.CREATED
+        );
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PostDto> updatePost(
             @PathVariable UUID id,
             @Valid @RequestBody UpdatePostRequest request) {
-         PostDto updated = postService.updatePost(id, request);
-        return ResponseEntity.ok(updated);
+        Post updatedPost = postService.updatePost(id, request);
+        return ResponseEntity.ok(PostMapper.toDto(updatedPost));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable UUID id) {
-         postService.deletePost(id);
+        postService.deletePost(id);
         return ResponseEntity.noContent().build();
     }
 }

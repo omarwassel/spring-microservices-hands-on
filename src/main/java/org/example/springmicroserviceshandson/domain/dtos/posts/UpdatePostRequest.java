@@ -1,6 +1,6 @@
-package org.example.springmicroserviceshandson.domain.dtos.Post;
+package org.example.springmicroserviceshandson.domain.dtos.posts;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +10,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class UpdatePostRequest extends CreatePostRequest {
 
-    @NotBlank(message = "ID is required for update")
+    @NotNull(message = "ID is required for update")
     private UUID id;
 
 }

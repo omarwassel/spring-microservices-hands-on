@@ -45,4 +45,9 @@ public class TagServiceImpl implements TagService {
         }
         tagRepository.deleteById(id);
     }
+
+    @Override
+    public List<Tag> findAllById(List<UUID> ids) {
+        return tagRepository.findAllById(ids);
+    }
 }
