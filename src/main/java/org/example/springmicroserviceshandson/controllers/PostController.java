@@ -38,6 +38,13 @@ public class PostController {
         return ResponseEntity.ok(PostMapper.toDto(post));
     }
 
+    @GetMapping("/drafts")
+    public ResponseEntity<List<PostDto>> getDraftPosts() {
+        List<Post> posts = postService.getDraftPosts();
+        List<PostDto> dtoList = posts.stream().map(PostMapper::toDto).toList();
+        return ResponseEntity.ok(dtoList);
+    }
+
     @PostMapping
     public ResponseEntity<PostDto> createPost(
             @Valid @RequestBody CreatePostRequest request) {

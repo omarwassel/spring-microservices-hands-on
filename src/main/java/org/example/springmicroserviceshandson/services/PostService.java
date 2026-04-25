@@ -13,4 +13,5 @@ public interface PostService {
     Post createPost(CreatePostRequest request);
     Post updatePost(UUID id, UpdatePostRequest request);
     void deletePost(UUID id);
+    List<Post> getDraftPosts();
 }

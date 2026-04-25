@@ -50,6 +50,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> getDraftPosts() {
+        return postRepository.findByStatus(PostStatus.DRAFT);
+    }
+
+    @Override
     @Transactional
     public Post getPostById(UUID id) {
         return postRepository
