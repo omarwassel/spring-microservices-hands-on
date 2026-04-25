@@ -16,6 +16,6 @@ public class CategoryDto {
 
     private UUID id;
     private String name;
-    private long postcount;
+    private Long postcount;
 
 }

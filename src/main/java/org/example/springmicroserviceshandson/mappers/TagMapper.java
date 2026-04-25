@@ -1,9 +1,7 @@
 package org.example.springmicroserviceshandson.mappers;
 
 import org.example.springmicroserviceshandson.domain.PostStatus;
-import org.example.springmicroserviceshandson.domain.dtos.CreateCategoryRequest;
-import org.example.springmicroserviceshandson.domain.dtos.TagResponse;
-import org.example.springmicroserviceshandson.domain.entities.Category;
+import org.example.springmicroserviceshandson.domain.dtos.TagDto;
 import org.example.springmicroserviceshandson.domain.entities.Post;
 import org.example.springmicroserviceshandson.domain.entities.Tag;
 
@@ -12,8 +10,8 @@ import java.util.Set;
 
 public class TagMapper {
 
-    public static TagResponse toDto(Tag tag) {
-        return TagResponse
+    public static TagDto toDto(Tag tag) {
+        return TagDto
                 .builder()
                 .id(tag.getId())
                 .name(tag.getName())

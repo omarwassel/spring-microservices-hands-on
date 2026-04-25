@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.springmicroserviceshandson.domain.dtos.TagRequest;
-import org.example.springmicroserviceshandson.domain.dtos.TagResponse;
+import org.example.springmicroserviceshandson.domain.dtos.TagDto;
 import org.example.springmicroserviceshandson.domain.entities.Tag;
 import org.example.springmicroserviceshandson.mappers.TagMapper;
 import org.example.springmicroserviceshandson.services.TagService;
@@ -23,20 +23,20 @@ public class TagController {
     private final TagService tagService;
 
     @GetMapping
-    public ResponseEntity<List<TagResponse>> getTags() {
+    public ResponseEntity<List<TagDto>> getTags() {
         List<Tag> tags = tagService.getAllTags();
         log.info("Returning list of tags {}", tags);
-        List<TagResponse> tagResponse = tags.stream().map(TagMapper::toDto).toList();
-        return ResponseEntity.ok(tagResponse);
+        List<TagDto> tagDto = tags.stream().map(TagMapper::toDto).toList();
+        return ResponseEntity.ok(tagDto);
     }
 
     @PostMapping
-    public ResponseEntity<List<TagResponse>> createTags(
+    public ResponseEntity<List<TagDto>> createTags(
             @Valid @RequestBody TagRequest tagRequest
     ) {
         List<Tag> tags = tagService.createTags(tagRequest.getNames());
-        List<TagResponse> tagResponse = tags.stream().map(TagMapper::toDto).toList();
-        return ResponseEntity.ok(tagResponse);
+        List<TagDto> tagDto = tags.stream().map(TagMapper::toDto).toList();
+        return ResponseEntity.ok(tagDto);
     }
 
     @DeleteMapping(path = "{id}")
